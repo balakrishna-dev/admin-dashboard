@@ -245,15 +245,6 @@ body {
   animation: page-in 0.55s cubic-bezier(0.22, 1, 0.36, 1) backwards;
 }
 
-@keyframes shimmer {
-  to { background-position: 200% 0; }
-}
-.shimmer {
-  background: linear-gradient(90deg, transparent, color-mix(in srgb, var(--text) 8%, transparent), transparent);
-  background-size: 200% 100%;
-  animation: shimmer 2.2s linear infinite;
-}
-
 @keyframes pulse-ring {
   0% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--success) 60%, transparent); }
   100% { box-shadow: 0 0 0 10px transparent; }

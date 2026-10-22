@@ -1,23 +1,10 @@
-import { Suspense, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Outlet, useLocation } from 'react-router-dom'
 import { useTheme } from '../hooks/useTheme'
 import { CommandPalette } from './CommandPalette'
+import { ErrorBoundary } from './ErrorBoundary'
 import { Sidebar } from './Sidebar'
 import { Topbar } from './Topbar'
-
-function PageSkeleton() {
-  return (
-    <div className="space-y-4">
-      <div className="shimmer h-10 w-64 rounded-xl bg-surface-2" />
-      <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
-        {Array.from({ length: 4 }, (_, i) => (
-          <div key={i} className="shimmer h-36 rounded-2xl bg-surface-2" />
-        ))}
-      </div>
-      <div className="shimmer h-80 rounded-2xl bg-surface-2" />
-    </div>
-  )
-}
 
 export function Layout() {
   const location = useLocation()
@@ -59,15 +46,11 @@ export function Layout() {
         <div className="flex min-w-0 flex-1 flex-col">
           <Topbar onOpenPalette={() => setPaletteOpen(true)} onOpenMobile={() => setMobileOpen(true)} />
           <main className="flex-1 px-4 pb-10 pt-6 md:px-8">
-            {/*
-              Pure-CSS enter animation keyed by route. No `filter` here: a filtered ancestor breaks the
-              backdrop-filter glass cards in some browsers and can leave the page blank until reload.
-              `backwards` fill means nothing lingers after the animation ends.
-            */}
+            {/* CSS-only enter animation keyed by route; `backwards` fill keeps content visible if it never runs. */}
             <div key={location.pathname} className="page-enter">
-              <Suspense fallback={<PageSkeleton />}>
+              <ErrorBoundary resetKey={location.pathname}>
                 <Outlet />
-              </Suspense>
+              </ErrorBoundary>
             </div>
           </main>
           <footer className="flex flex-col items-center justify-between gap-2 px-4 pb-6 text-xs text-subtle sm:flex-row md:px-8">

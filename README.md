@@ -33,7 +33,7 @@
 | 🗂️ | **Kanban board** | Drag-and-drop tasks across columns with spring-animated layout transitions and inline task creation. |
 | 🪪 | **3D customer cards** | Perspective-tilt cards with tier badges, sparklines and grid / list views. |
 | 📱 | **Fully responsive** | Collapsible sidebar on desktop, slide-in drawer on mobile. |
-| ⚡ | **Fast** | Route-level code splitting, vendor chunking and skeleton loaders. Respects `prefers-reduced-motion`. |
+| ⚡ | **Fast & resilient** | Vendor chunking for long-term caching, an error boundary with recovery, and CSS-first animations that respect `prefers-reduced-motion`. |
 
 ## 🖼️ Screenshots
 
@@ -95,13 +95,13 @@ npm run dev        # http://localhost:5173
 
 ```
 src/
-├── components/      # Layout, Sidebar, Topbar, CommandPalette, StatCard, UI primitives
+├── components/      # Layout, Sidebar, Topbar, CommandPalette, ErrorBoundary, StatCard, UI primitives
 ├── data/            # Deterministic, seeded mock data
 ├── hooks/           # useTheme (theme + accent context), useCountUp
 ├── lib/             # Formatting helpers, status → tone mapping
 ├── pages/           # Overview, Analytics, Orders, Customers, Projects, Settings, 404
 ├── index.css        # Design tokens, glass / spotlight utilities, aurora background
-└── main.tsx         # Router + lazy-loaded routes
+└── main.tsx         # Router + routes
 ```
 
 ## 🌐 Deployment
