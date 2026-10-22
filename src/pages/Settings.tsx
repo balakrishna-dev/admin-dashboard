@@ -72,7 +72,7 @@ export default function Settings() {
           </nav>
         </Card>
 
-        <motion.div key={tab} initial={{ opacity: 0, x: 10 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.25 }} className="space-y-4">
+        <div key={tab} className="rise space-y-4">
           {tab === 'appearance' && (
             <>
               <Card className="p-5">
@@ -226,7 +226,7 @@ export default function Settings() {
               </Card>
             </>
           )}
-        </motion.div>
+        </div>
       </div>
     </>
   )

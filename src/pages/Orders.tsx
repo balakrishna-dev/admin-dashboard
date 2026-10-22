@@ -165,12 +165,9 @@ export default function Orders() {
               </tr>
             </thead>
             <tbody>
-              {rows.map((o, i) => (
-                <motion.tr
+              {rows.map((o) => (
+                <tr
                   key={o.id}
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ delay: i * 0.02 }}
                   onClick={() => setDetail(o)}
                   className={cn('cursor-pointer transition-colors hover:bg-surface-2', selected.has(o.id) && 'bg-accent/[0.06]')}
                   style={{ borderTop: '1px solid var(--border)' }}
@@ -199,7 +196,7 @@ export default function Orders() {
                   <td className="pr-4">
                     <MoreHorizontal className="size-4 text-subtle" />
                   </td>
-                </motion.tr>
+                </tr>
               ))}
               {rows.length === 0 && (
                 <tr>

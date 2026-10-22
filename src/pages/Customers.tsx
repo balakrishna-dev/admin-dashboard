@@ -12,7 +12,7 @@ const TIER_STYLE: Record<Customer['tier'], string> = {
   Silver: 'from-zinc-300 via-zinc-200 to-zinc-400 text-zinc-800',
 }
 
-function TiltCard({ c, index }: { c: Customer; index: number }) {
+function TiltCard({ c }: { c: Customer }) {
   const x = useMotionValue(0)
   const y = useMotionValue(0)
   const rx = useSpring(useTransform(y, [-0.5, 0.5], [7, -7]), { stiffness: 200, damping: 18 })
@@ -29,7 +29,7 @@ function TiltCard({ c, index }: { c: Customer; index: number }) {
   }
 
   return (
-    <motion.div layout initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.95 }} transition={{ delay: index * 0.03 }} style={{ perspective: 900 }}>
+    <motion.div layout initial={false} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.95 }} style={{ perspective: 900 }}>
       <motion.div style={{ rotateX: rx, rotateY: ry, transformStyle: 'preserve-3d' }} onMouseMove={onMove} onMouseLeave={reset}>
         <Card className="overflow-hidden p-5">
           <div className="absolute inset-x-0 top-0 h-20 opacity-60" style={{ background: `linear-gradient(135deg, hsl(${c.hue} 80% 60% / .35), transparent 70%)` }} />
@@ -125,8 +125,8 @@ export default function Customers() {
       {layout === 'grid' ? (
         <motion.div layout className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4">
           <AnimatePresence mode="popLayout">
-            {list.map((c, i) => (
-              <TiltCard key={c.id} c={c} index={i} />
+            {list.map((c) => (
+              <TiltCard key={c.id} c={c} />
             ))}
           </AnimatePresence>
         </motion.div>

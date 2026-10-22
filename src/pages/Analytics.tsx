@@ -168,11 +168,8 @@ export default function Analytics() {
                   <span className="w-8 shrink-0 text-[10px] text-subtle">{DAYS[d]}</span>
                   <div className="grid flex-1 gap-[3px]" style={{ gridTemplateColumns: 'repeat(24, minmax(0, 1fr))' }}>
                     {row.map((v, h) => (
-                      <motion.div
+                      <div
                         key={h}
-                        initial={{ opacity: 0, scale: 0.4 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        transition={{ delay: 0.4 + (d * 24 + h) * 0.003 }}
                         title={`${DAYS[d]} ${h}:00 · ${Math.round(v * 100)}% activity`}
                         className="aspect-square rounded-[3px] transition-transform hover:scale-125"
                         style={{ background: `color-mix(in srgb, var(--accent) ${Math.round(8 + v * 92)}%, var(--surface-2))` }}

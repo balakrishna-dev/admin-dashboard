@@ -204,7 +204,7 @@ export default function Overview() {
             {activity.map((a, i) => {
               const { icon: Icon, color } = ACTIVITY_ICON[a.kind]
               return (
-                <motion.li key={a.id} initial={{ opacity: 0, x: -8 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.5 + i * 0.06 }} className="relative flex gap-3">
+                <li key={a.id} className="rise relative flex gap-3" style={{ animationDelay: `${0.5 + i * 0.06}s` }}>
                   <span className="relative z-10 grid size-8 shrink-0 place-items-center rounded-full bg-surface-solid" style={{ border: '1px solid var(--border)', color }}>
                     <Icon className="size-3.5" />
                   </span>
@@ -214,7 +214,7 @@ export default function Overview() {
                     </p>
                     <p className="mt-0.5 text-[11px] text-subtle">{a.time}</p>
                   </div>
-                </motion.li>
+                </li>
               )
             })}
           </ol>

@@ -107,7 +107,7 @@ export default function Projects() {
                     key={t.id}
                     layout
                     layoutId={t.id}
-                    initial={{ opacity: 0, scale: 0.95 }}
+                    initial={false}
                     animate={{ opacity: dragging?.id === t.id ? 0.4 : 1, scale: 1 }}
                     exit={{ opacity: 0, scale: 0.95 }}
                     transition={{ type: 'spring', bounce: 0.2, duration: 0.4 }}
