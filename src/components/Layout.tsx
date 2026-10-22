@@ -1,4 +1,3 @@
-import { motion } from 'framer-motion'
 import { Suspense, useEffect, useState } from 'react'
 import { Outlet, useLocation } from 'react-router-dom'
 import { useTheme } from '../hooks/useTheme'
@@ -60,17 +59,16 @@ export function Layout() {
         <div className="flex min-w-0 flex-1 flex-col">
           <Topbar onOpenPalette={() => setPaletteOpen(true)} onOpenMobile={() => setMobileOpen(true)} />
           <main className="flex-1 px-4 pb-10 pt-6 md:px-8">
-            {/* Keyed enter-only transition: an exit animation would re-render the new <Outlet /> inside the leaving page. */}
-            <motion.div
-              key={location.pathname}
-              initial={{ opacity: 0, y: 8, filter: 'blur(4px)' }}
-              animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
-              transition={{ duration: 0.35, ease: 'easeOut' }}
-            >
+            {/*
+              Pure-CSS enter animation keyed by route. No `filter` here: a filtered ancestor breaks the
+              backdrop-filter glass cards in some browsers and can leave the page blank until reload.
+              `backwards` fill means nothing lingers after the animation ends.
+            */}
+            <div key={location.pathname} className="page-enter">
               <Suspense fallback={<PageSkeleton />}>
                 <Outlet />
               </Suspense>
-            </motion.div>
+            </div>
           </main>
           <footer className="flex flex-col items-center justify-between gap-2 px-4 pb-6 text-xs text-subtle sm:flex-row md:px-8">
             <p>

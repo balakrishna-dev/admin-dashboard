@@ -234,6 +234,13 @@ body {
   100% { transform: translate3d(-4vmax, 8vmax, 0) scale(0.95); }
 }
 
+@keyframes page-in {
+  from { opacity: 0; transform: translateY(8px); }
+}
+.page-enter {
+  animation: page-in 0.35s ease-out backwards;
+}
+
 @keyframes shimmer {
   to { background-position: 200% 0; }
 }
